@@ -1,6 +1,7 @@
 import { dbService } from "fbInstance";
 import React, { useEffect, useState } from "react";
 import { addDoc, collection, getDocs, getFirestore, onSnapshot, orderBy, query } from "firebase/firestore";
+import Jweet from "components/jweet";
 
 const Home = ({userObj}) => {
 
@@ -62,9 +63,8 @@ const Home = ({userObj}) => {
             </form>
             <div>
                 {jweets.map((jweet) => (
-                    <div key={jweet.id}>
-                    <h4>{jweet.text}</h4>
-                </div>))}
+                    <Jweet key={jweet.id} jweetObj={jweet} isOwner={jweet.creatorId === userObj.uid}></Jweet>
+))}
             </div>
         </div>);
 };
