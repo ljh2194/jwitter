@@ -2,7 +2,7 @@ import { dbService } from "fbInstance";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 
-const Jweet = ({ jweetObj, isOwner }) => {
+const Jweet = ({ attachmentUrl, jweetObj, isOwner }) => {
    
     const [editing, setEditing] = useState(false);
     const [newJweet, setNewJweet] = useState(jweetObj.text);
@@ -44,6 +44,7 @@ const Jweet = ({ jweetObj, isOwner }) => {
                 <button onClick={toggleEditing}>Cancle</button>
             </>) : (<>
                     <h4>{jweetObj.text}</h4>
+                    {jweetObj.attachmentUrl && <img src={jweetObj.attachmentUrl} width="50px" height="50px"/>}
                     {isOwner && (
                         <>
                             <button onClick={onDeleteClick}>Delete</button>
